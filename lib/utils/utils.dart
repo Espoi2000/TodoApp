@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todoapp/model/todomodel.dart';
+import 'package:todoapp/screen/home.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class Utils {
   Future showDialogueTaskt(BuildContext context, controller, textTitle,
@@ -36,29 +38,6 @@ class Utils {
     );
   }
 
-  // textButtonSubmit(BuildContext context, textButton, controller,taskval) {
-  //   return InkWell(
-  //     onTap: () {
-  //       taskval = controller.text;
-  //       var task = Todo(tache: taskval, tckeck: false);
-  //     },
-  //     child: Container(
-  //       width: MediaQuery.of(context).size.width / 2,
-  //       height: 30,
-  //       decoration: BoxDecoration(
-  //         color: Colors.red,
-  //         borderRadius: BorderRadius.circular(20),
-  //       ),
-  //       child: Center(
-  //         child: Text(
-  //           textButton,
-  //           style: const TextStyle(color: Colors.white, fontSize: 17),
-  //         ),
-  //       ),
-  //     ),
-  //   );
-  // }
-
   titleForm(BuildContext context, text) {
     return Text(
       text,
@@ -66,44 +45,66 @@ class Utils {
           color: Colors.red, fontSize: 20, fontWeight: FontWeight.bold),
     );
   }
-  // dynamic editOrSaveButton(text, controller, context, showButton) {
-  //   return (showButton == "ajout")
-  //       ? TextButton(
-  //           child: Text(text),
-  //           onPressed: () {
-  //             var taskvalue = controller.text;
-  //             // print(taskvalue);
-  //             controller.clear();
-  //             var task = Todo(tache: taskvalue, tckeck: false);
 
-  //             addTodoItem(task);
+  richtext(BuildContext context, text1, text2, test3, text4) {
+    return RichText(
+      textAlign: TextAlign.center,
+      text: TextSpan(
+        text: text1,
+        style: const TextStyle(
+          fontSize: 35,
+          fontWeight: FontWeight.w700,
+          letterSpacing: .2,
+          color: Colors.black,
+        ),
+        children: [
+          TextSpan(
+            text: text2,
+            style: const TextStyle(
+              color: Colors.red,
+              fontSize: 35,
+              fontWeight: FontWeight.w700,
+              letterSpacing: .2,
+            ),
+          ),
+          TextSpan(
+            text: test3,
+            style: const TextStyle(
+              fontSize: 35,
+              fontWeight: FontWeight.w700,
+              height: 1,
+              letterSpacing: .2,
+              color: Colors.black,
+            ),
+          ),
+          TextSpan(
+            text: text4,
+            style: const TextStyle(
+              color: Colors.red,
+              fontSize: 35,
+              fontWeight: FontWeight.w700,
+              letterSpacing: .2,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 
-  //             Navigator.of(context).pop();
-  //           },
-  //         )
-  //       : TextButton(
-  //           child: Text(text),
-  //           onPressed: () {
-  //             var taskvalue = controller.text;
-  //             // print(taskvalue);
-  //             controller.clear();
-  //             var task = Todo(tache: taskvalue, tckeck: false);
-  //             Navigator.of(context).pop();
-  //           },
-  //         );
-  // }
-  // _toggleItem(bool value, int i) {
-  //   setState(() {
-  //     list.todos[i].tckeck = !list.todos[i].tckeck;
-  //     _saveToStorage();
-  //   });
-  // }
+  textDate(DateTime date, String libelleDate) {
+    initializeDateFormatting();
+    var dateformat = DateFormat('EEEE d-MMM-yyyy ,', 'fr').format(date);
+
+    return Text(
+      libelleDate == "end"
+          ? "Fin : $dateformat À ${date.hour}H:${date.minute}min"
+          : "Début : $dateformat   À ${date.hour}H:${date.minute}min",
+      // "${date.day} - ${date.month} - ${date.year} ${ate.hour}:${date.minute}",
+      style: TextStyle(
+        color: libelleDate == "end" ? Colors.red : Colors.black,
+        fontWeight: FontWeight.w600,
+        fontSize: 11,
+      ),
+    );
+  }
 }
-
-
-
-// taskvalue = _TaskController.text;
-//                 // print(taskvalue);
-//                 _TaskController.clear();
-//                 var task = Todo(tache: taskvalue, tckeck: false);
-//                   addTodoItem(task);

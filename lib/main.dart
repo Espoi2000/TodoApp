@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+
 import 'package:todoapp/screen/home.dart';
-import 'package:todoapp/screen/todo_insert.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+
   runApp(const MyApp());
 }
 
